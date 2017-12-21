@@ -3,7 +3,7 @@ package com.company;
 /**
  * Created by ls059 on 12/18/17.
  */
-public class boardState  {
+public class  boardState  {
     public static String [][] board;
     public static int move = 1;
     public static int[] uMove = new int[2];
@@ -55,7 +55,7 @@ public class boardState  {
                 board[1][1] = "o ";
             }else{
                 System.out.println("I will take (0,0)");
-                board[0][0] = "o ";
+                board[0][2] = "o ";
             }
 
             cpuL = "o ";
@@ -94,16 +94,16 @@ public class boardState  {
 
             for(int k = 0;k<board.length;k++){
             for(int i=0;i<board.length;i++){
-                if (!(board[k][i].equals(cpuL))) {
+                if (!(board[k][i].equals(cpuL)) && !(board[k][i].equals("- "))) {
                     countU++;
-                }else if((board[0][i].equals(cpuL))){
+                }else if((board[0][i].equals(cpuL)) && !(board[k][i].equals("- "))){
                         countC++;
                     }
                     if(countU == 2 && !(countC == 1)){
                         for(int j = 0;j<board.length;j++){
-                            if(!(board[k][j].equals(userL)));{
+                            if(!(board[k][j].equals(userL)) && !(board[k][j].equals(cpuL))){
                                 a[0] = k; a[1] = j;
-                                System.out.println(a[0] + " " + a[1]);
+                                System.out.println("row");
                                 return a;
                             }
 
@@ -111,7 +111,86 @@ public class boardState  {
                     }
                 }
                 countU = 0;
+                countC = 0;
             }
+
+       for(int k = 0;k<board.length;k++){
+           for(int i=0;i<board.length;i++){
+               if (!(board[i][k].equals(cpuL)) && !(board[i][k].equals("- "))) {
+                   countU++;
+               }else if((board[i][k].equals(cpuL)) && !(board[i][k].equals("- "))){
+                   countC++;
+               }
+               if(countU == 2 && !(countC == 1)){
+                   for(int j = 0;j<board.length;j++){
+                       if(!(board[j][k].equals(userL)) && !(board[j][k].equals(cpuL))){
+                           a[0] = j; a[1] = k;
+
+                           System.out.println("Colom");
+                           return a;
+                       }
+
+                   }
+               }
+           }
+           countU = 0;
+           countC = 0;
+       }
+
+       for(int k = 0;k<board.length;k++){
+           for(int i=0;i<board.length;i++){
+
+               if (!(board[k][i].equals(cpuL)) && !(board[k][i].equals("- "))) {
+                   countU++;
+               }else if((board[k][i].equals(cpuL)) && !(board[k][i].equals("- "))){
+                   countC++;
+               }
+               k++;
+               if(countU == 2 && !(countC == 1)){
+                   k = 0;
+                   for(int j = 0;j<board.length;j++){
+
+                       if(!(board[k][j].equals(userL)) && !(board[k][j].equals(cpuL))){
+                           a[0] = k; a[1] = j;
+                           System.out.println("diagonal");
+                           return a;
+                       }
+                       k++;
+                       System.out.println(k);
+
+                   }
+               }
+           }
+
+       }
+
+
+       for(int k = 0;k<board.length;k++){
+           for(int i=2;i>=0;i--){
+
+               if (!(board[k][i].equals(cpuL)) && !(board[k][i].equals("- "))) {
+                   countU++;
+               }else if((board[k][i].equals(cpuL)) && !(board[k][i].equals("- "))){
+                   countC++;
+               }
+               k++;
+               if(countU == 2 && !(countC == 1)){
+                   k = 0;
+                   for(int j = 2;j>=0;j--){
+
+                       if(!(board[k][j].equals(userL)) && !(board[k][j].equals(cpuL))){
+                           a[0] = k; a[1] = j;
+                           System.out.println("diagonal");
+                           return a;
+                       }
+                       k++;
+                       System.out.println(k);
+
+                   }
+               }
+           }
+
+       }
 
 
 
