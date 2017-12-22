@@ -22,6 +22,11 @@ public class  boardState  {
         }
     }
     public static void userMove(int y, int x){
+        if((board[x][y].equals(cpuL) || board[x][y].equals(userL))){
+        System.out.println("Invalid move.  Restarting");
+        System.exit(1);
+    }
+
         if(move%2 == 0) {
             board[y][x] = "o ";
             userL = "o ";
@@ -68,6 +73,10 @@ public class  boardState  {
 
         if(move > 2) {
             cMove = check2();
+            if((board[cMove[0]][cMove[1]].equals(cpuL) || board[cMove[0]][cMove[1]].equals(userL))){
+                System.out.println("Invalid move.  Restarting");
+                System.exit(1);
+            }
             System.out.println("I will take(" + cMove[0] + "," + cMove[1] + ")");
             board[cMove[0]][cMove[1]] = cpuL;
             //check for 2 in a row etc.
@@ -93,27 +102,27 @@ public class  boardState  {
     private static int[] check2(){
        int[] a = new int[2];
 
-            for(int k = 0;k<board.length;k++){
+        for(int k = 0;k<board.length;k++){
             for(int i=0;i<board.length;i++){
                 if (!(board[k][i].equals(cpuL)) && !(board[k][i].equals("- "))) {
                     countU++;
                 }else if((board[k][i].equals(cpuL)) && !(board[k][i].equals("- "))){
-                        countC++;
-                    }
-                    if(countU == 2 && !(countC == 1)){
-                        for(int j = 0;j<board.length;j++){
-                            if(!(board[k][j].equals(userL)) && !(board[k][j].equals(cpuL))){
-                                a[0] = k; a[1] = j;
-                                System.out.println("row");
-                                return a;
-                            }
+                    countC++;
+                }
+                if(countU == 2 && !(countC == 1)){
+                    for(int j = 0;j<board.length;j++){
+                        if(!(board[k][j].equals(userL)) && !(board[k][j].equals(cpuL))){
+                            a[0] = k; a[1] = j;
 
+                            return a;
                         }
+
                     }
                 }
-                countU = 0;
-                countC = 0;
             }
+            countU = 0;
+            countC = 0;
+        }
 
        for(int k = 0;k<board.length;k++){
            for(int i=0;i<board.length;i++){
@@ -127,7 +136,6 @@ public class  boardState  {
                        if(!(board[j][k].equals(userL)) && !(board[j][k].equals(cpuL))){
                            a[0] = j; a[1] = k;
 
-                           System.out.println("Colom");
                            return a;
                        }
 
@@ -153,7 +161,6 @@ public class  boardState  {
 
                        if(!(board[k][j].equals(userL)) && !(board[k][j].equals(cpuL))){
                            a[0] = k; a[1] = j;
-                           System.out.println("diagonal");
                            return a;
                        }
                        k++;
@@ -193,12 +200,12 @@ public class  boardState  {
 
        }
        */
-       System.out.println("dud");
        for(int k = 0;k<board.length;k++){
            for(int i=0;i<board.length;i++){
 
                if (!(board[k][i].equals(cpuL)) && !(board[k][i].equals(userL))) {
                    a[0] = k;a[1] = i;
+                   break;
                }
                }
            }
@@ -207,7 +214,7 @@ public class  boardState  {
        return a;
         }
 
-    private static boolean winCheck(){
+    public static boolean winCheck(){
     countC = 0; countU = 0;int blank = 0;
 
         for(int k = 0;k<board.length;k++){
