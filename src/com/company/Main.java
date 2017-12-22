@@ -31,6 +31,18 @@ public class Main {
         boardState.cpuMove();
 
 
+        move = new Scanner(System.in);
+        System.out.println("Please input the coordinates of your move with 0,0 being the top left and 0,2 being the top right.\nex.  1,1 or 0,2");
+        in = move.next();
+        str = in.split(",");
+        for(int i = 0; i < str.length; i++) {
+            boardState.uMove[i] = Integer.parseInt(str[i]);
+        }
+        boardState.userMove(boardState.uMove[0], boardState.uMove[1]);
+        System.out.println("Thinking...");
+        Thread.sleep(2000);
+        boardState.cpuMove();
+
 
         move = new Scanner(System.in);
         System.out.println("Please input the coordinates of your move with 0,0 being the top left and 0,2 being the top right.\nex.  1,1 or 0,2");
@@ -44,6 +56,31 @@ public class Main {
         Thread.sleep(2000);
         boardState.cpuMove();
 
+
+        move = new Scanner(System.in);
+        System.out.println("Please input the coordinates of your move with 0,0 being the top left and 0,2 being the top right.\nex.  1,1 or 0,2");
+        in = move.next();
+        str = in.split(",");
+        for(int i = 0; i < str.length; i++) {
+            boardState.uMove[i] = Integer.parseInt(str[i]);
+        }
+        boardState.userMove(boardState.uMove[0], boardState.uMove[1]);
+        System.out.println("Thinking...");
+        Thread.sleep(2000);
+        boardState.cpuMove();
+
+
+        move = new Scanner(System.in);
+        System.out.println("Please input the coordinates of your move with 0,0 being the top left and 0,2 being the top right.\nex.  1,1 or 0,2");
+        in = move.next();
+        str = in.split(",");
+        for(int i = 0; i < str.length; i++) {
+            boardState.uMove[i] = Integer.parseInt(str[i]);
+        }
+        boardState.userMove(boardState.uMove[0], boardState.uMove[1]);
+        System.out.println("Thinking...");
+        Thread.sleep(2000);
+        boardState.cpuMove();
 
     }
 }
