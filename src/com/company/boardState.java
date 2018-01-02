@@ -283,8 +283,10 @@ public class  boardState  {
             }
         }
 
-        if(blank == 0)
+        if(blank == 0) {
+            System.out.println("Oops it's a tie");
             return true;
+        }
 
        return false;
     }
