@@ -21,17 +21,17 @@ public class  boardState  {
             }
         }
     }
-    public static void userMove(int y, int x){
-        if((board[x][y].equals(cpuL) || board[x][y].equals(userL))){
+    public static void userMove(int x, int y){
+        if(!(board[x][y].equals("- "))){
         System.out.println("Invalid move.  Restarting");
         System.exit(1);
     }
 
         if(move%2 == 0) {
-            board[y][x] = "o ";
+            board[x][y] = "o ";
             userL = "o ";
         }else{
-            board[y][x] = "x ";
+            board[x][y] = "x ";
             userL = "x ";
         }
         for(int i = 0; i<boardState.board.length; i++) {
