@@ -22,19 +22,19 @@ public class  boardState  {
         }
     }
     public static void userMove(int x, int y){
-        if(!(board[x][y].equals("- "))){
+        if(!(board[x][y].equals("- "))){ //checks for valid move
         System.out.println("Invalid move.  Restarting");
         System.exit(1);
     }
 
-        if(move%2 == 0) {
+        if(move%2 == 0) { //assigns the use a letter for the game
             board[x][y] = "o ";
             userL = "o ";
         }else{
             board[x][y] = "x ";
             userL = "x ";
         }
-        for(int i = 0; i<boardState.board.length; i++) {
+        for(int i = 0; i<boardState.board.length; i++) { //prints the board
             for(int j = 0; j<boardState.board.length; j++) {
                 System.out.print(boardState.board[i][j]);
                 try {
@@ -51,12 +51,12 @@ public class  boardState  {
     public static void cpuMove(){
 
 
-        if(move == 1){
+        if(move == 1){ //decides optimal move
             System.out.println("I will take (0,0)");
             board[0][0] = "x ";
             cpuL = "x ";
         }
-        else if(move == 2){
+        else if(move == 2){ // decides optimal move
             if(board[1][1].equals("- ")){
                 System.out.println("I will take (1,1)");
                 board[1][1] = "o ";
@@ -71,9 +71,9 @@ public class  boardState  {
         }
 
 
-        if(move > 2) {
+        if(move > 2) { // gets move from check to and makes it
             cMove = check2();
-            if((board[cMove[0]][cMove[1]].equals(cpuL) || board[cMove[0]][cMove[1]].equals(userL))){
+            if((board[cMove[0]][cMove[1]].equals(cpuL) || board[cMove[0]][cMove[1]].equals(userL))){ //checks for move validity
                 System.out.println("Invalid move.  Restarting");
                 System.exit(1);
             }
@@ -82,7 +82,7 @@ public class  boardState  {
             //check for 2 in a row etc.
         }
 
-        for(int i = 0; i<boardState.board.length; i++) {
+        for(int i = 0; i<boardState.board.length; i++) { // prints board
             for(int j = 0; j<boardState.board.length; j++) {
                 System.out.print(boardState.board[i][j]);
                 try {
@@ -101,19 +101,20 @@ public class  boardState  {
 
     private static int[] check2(){
        int[] a = new int[2];
+       countU = 0; countC = 0;
 
-        for(int k = 0;k<board.length;k++){
+        for(int k = 0;k<board.length;k++){ // checks if any rows have 2 of the user's letter in them
             for(int i=0;i<board.length;i++){
                 if (!(board[k][i].equals(cpuL)) && !(board[k][i].equals("- "))) {
                     countU++;
                 }else if((board[k][i].equals(cpuL)) && !(board[k][i].equals("- "))){
                     countC++;
                 }
-                if(countU == 2 && !(countC == 1)){
+                if(countU == 2 && !(countC == 1)){ // checks for when there are 2 letters in a row
                     for(int j = 0;j<board.length;j++){
-                        if(!(board[k][j].equals(userL)) && !(board[k][j].equals(cpuL))){
+                        if(!(board[k][j].equals(userL)) && !(board[k][j].equals(cpuL))){ // sends the coordinates of the open space in a row to the computer to select as its move
                             a[0] = k; a[1] = j;
-
+                            System.out.println((a[0] + a[1]));
                             return a;
                         }
 
@@ -124,29 +125,30 @@ public class  boardState  {
             countC = 0;
         }
 
-       for(int k = 0;k<board.length;k++){
+       for(int k = 0;k<board.length;k++){// same as above for columns
            for(int i=0;i<board.length;i++){
-               if (!(board[i][k].equals(cpuL)) && !(board[i][k].equals("- "))) {
+               if ((board[i][k].equals(userL))) {
                    countU++;
-               }else if((board[i][k].equals(cpuL)) && !(board[i][k].equals("- "))){
+               }else if(!(board[i][k].equals(userL)) && !(board[i][k].equals("- "))){
                    countC++;
                }
                if(countU == 2 && !(countC == 1)){
                    for(int j = 0;j<board.length;j++){
                        if(!(board[j][k].equals(userL)) && !(board[j][k].equals(cpuL))){
                            a[0] = j; a[1] = k;
-
+                           System.out.println((a[0] + a[1]));
                            return a;
                        }
 
                    }
                }
            }
+
            countU = 0;
            countC = 0;
        }
 
-       for(int k = 0;k<board.length;k++){
+       for(int k = 0;k<board.length;k++){ // same as above but for diagonals
            for(int i=0;i<board.length;i++){
 
                if (!(board[k][i].equals(cpuL)) && !(board[k][i].equals("- "))) {
@@ -161,6 +163,7 @@ public class  boardState  {
 
                        if(!(board[k][j].equals(userL)) && !(board[k][j].equals(cpuL))){
                            a[0] = k; a[1] = j;
+                           System.out.println((a[0] + a[1]));
                            return a;
                        }
                        k++;
@@ -171,41 +174,15 @@ public class  boardState  {
            }
 
        }
-
-/*
-       for(int k = 0;k<board.length;k++){
-           for(int i=2;i>=0;i--){
-
-               if (!(board[k][i].equals(cpuL)) && !(board[k][i].equals("- "))) {
-                   countU++;
-               }else if((board[k][i].equals(cpuL)) && !(board[k][i].equals("- "))){
-                   countC++;
-               }
-               k++;
-               if(countU == 2 && !(countC == 1)){
-                   k = 0;
-                   for(int j = 2;j>=0;j--){
-
-                       if(!(board[k][j].equals(userL)) && !(board[k][j].equals(cpuL))){
-                           a[0] = k; a[1] = j;
-                           System.out.println("diagonal2");
-                           return a;
-                       }
-                       k++;
-                       System.out.println(k);
-
-                   }
-               }
-           }
-
-       }
-       */
+       random:
        for(int k = 0;k<board.length;k++){
            for(int i=0;i<board.length;i++){
 
                if (!(board[k][i].equals(cpuL)) && !(board[k][i].equals(userL))) {
                    a[0] = k;a[1] = i;
-                   break;
+                   double j = Math.random();
+                   if(j < .5)
+                    break random;
                }
                }
            }
