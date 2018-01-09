@@ -7,15 +7,12 @@ public class Main {
 
         //board state
         new boardState();
-
-
         for(int i = 0; i<boardState.board.length; i++) {
             for(int j = 0; j<boardState.board.length; j++) {
                 System.out.print(boardState.board[i][j]);
                 Thread.sleep(210);
             }
             System.out.println();
-
         }
 
         Scanner move = new Scanner(System.in);

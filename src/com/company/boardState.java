@@ -114,7 +114,6 @@ public class  boardState  {
                     for(int j = 0;j<board.length;j++){
                         if(!(board[k][j].equals(userL)) && !(board[k][j].equals(cpuL))){ // sends the coordinates of the open space in a row to the computer to select as its move
                             a[0] = k; a[1] = j;
-                            System.out.println((a[0] + a[1]));
                             return a;
                         }
 
@@ -136,7 +135,6 @@ public class  boardState  {
                    for(int j = 0;j<board.length;j++){
                        if(!(board[j][k].equals(userL)) && !(board[j][k].equals(cpuL))){
                            a[0] = j; a[1] = k;
-                           System.out.println((a[0] + a[1]));
                            return a;
                        }
 
@@ -163,11 +161,11 @@ public class  boardState  {
 
                        if(!(board[k][j].equals(userL)) && !(board[k][j].equals(cpuL))){
                            a[0] = k; a[1] = j;
-                           System.out.println((a[0] + a[1]));
+
                            return a;
                        }
                        k++;
-                       System.out.println(k);
+
 
                    }
                }
@@ -190,6 +188,38 @@ public class  boardState  {
 
        return a;
         }
+/*
+    private static int[] bestMove(){
+    int[] a = new int[2];
+    int bm = 0;
+    int[] bmTest = new int[2]
+    int[] bmCord = new int[2]
+       countU = 0; countC = 0;
+
+        for(int k = 0;k<board.length;k++){
+            for(int i=0;i<board.length;i++){
+                if (!(board[k][i].equals(cpuL)) && !(board[k][i].equals("- "))) {
+                    countU++;
+                }else if((board[k][i].equals(cpuL)) && !(board[k][i].equals("- "))){
+                    countC++;
+                }
+                if(countC == 2 && !(countU == 1)){
+                    for(int j = 0;j<board.length;j++){
+                        if(!(board[k][j].equals(userL)) && !(board[k][j].equals(cpuL))){
+
+
+                        }
+
+                    }
+                }
+            }
+            countU = 0;
+            countC = 0;
+        }
+
+
+    }
+    */
 
     public static boolean winCheck(){
     countC = 0; countU = 0;int blank = 0;
